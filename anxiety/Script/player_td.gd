@@ -4,8 +4,8 @@ var can_die: bool = false
 var can_attack: bool = false
 const SPEED = 200
 @onready var sprite: Sprite2D = $Sprite
-@onready var sprite_2d: AnimationPlayer = $AnimationPlayer
-@onready var arma: CollisionShape2D = $"Sprite/attack area/arma"
+@onready var sprite_2d: AnimationPlayer = $Animation
+@onready var arma: CollisionShape2D = $"attack area/arma"
 
 func _physics_process(_delta: float) -> void:
 	move()
@@ -34,11 +34,11 @@ func animate() -> void:
 		set_physics_process(false)
 	elif Input.is_action_pressed("right"):
 		sprite_2d.play("side")
-		arma.position = Vector2(14.279, 10.195)
+		arma.position.x =  40
 		sprite.flip_h = false
 	elif Input.is_action_pressed("left"):
 		sprite_2d.play("side")
-		arma.position = Vector2(-14.279, 10.195)
+		arma.position.x = -40
 		sprite.flip_h = true
 	elif Input.is_action_pressed("up"):
 		sprite_2d.play("up")
