@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dapwydycpy01f"]
+[gd_scene load_steps=19 format=4 uid="uid://dapwydycpy01f"]
 
 [ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_3ehcv"]
 [ext_resource type="Script" path="res://Script/level.gd" id="2_qu7in"]
@@ -6,13 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cns5qkkccmb6c" path="res://Scenes/espinhos.tscn" id="4_6xphw"]
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="5_x7i4r"]
 [ext_resource type="Texture2D" uid="uid://d4btevtjmv7k4" path="res://Assets/background.png" id="6_68u4f"]
+[ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="7_aee8n"]
 [ext_resource type="Texture2D" uid="uid://r4v4qqdp0rwm" path="res://Assets/retry.png" id="7_jckbu"]
+[ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="9_rskpq"]
+[ext_resource type="PackedScene" uid="uid://bieixcj3tc1ri" path="res://Scenes/enemy.tscn" id="10_dnr04"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5g2ec"]
-shader = ExtResource("1_3ehcv")
-shader_parameter/change = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtouf"]
 shader = ExtResource("1_3ehcv")
 shader_parameter/change = true
 
@@ -33,7 +32,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3xdlb"]
 resource_name = "fade_in"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,16 +39,46 @@ tracks/0/path = NodePath("Game_Over/Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wtq3h"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game_Over/Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_scene"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fa8s1"]
 _data = {
 "RESET": SubResource("Animation_dnme3"),
-"fade_in": SubResource("Animation_3xdlb")
+"fade_in": SubResource("Animation_3xdlb"),
+"fade_out": SubResource("Animation_wtq3h")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trwhl"]
@@ -60,13 +88,15 @@ shader_parameter/change = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj0yx"]
 size = Vector2(3177, 262)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsu5i"]
+size = Vector2(643, 242)
+
 [node name="Level1SS" type="Node2D"]
 material = SubResource("ShaderMaterial_5g2ec")
 script = ExtResource("2_qu7in")
 
 [node name="Player" parent="." instance=ExtResource("3_8ton5")]
-material = SubResource("ShaderMaterial_xtouf")
-position = Vector2(51, 199)
+position = Vector2(53, 292)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
@@ -98,6 +128,7 @@ position = Vector2(2912, 294)
 libraries = {
 "": SubResource("AnimationLibrary_fa8s1")
 }
+autoplay = "fade_in"
 
 [node name="Tiles" parent="." instance=ExtResource("5_x7i4r")]
 position = Vector2(-128, 6)
@@ -150,6 +181,7 @@ offset_right = 222.5
 offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_aee8n")
 theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -176,7 +208,21 @@ expand_mode = 1
 position = Vector2(1750, 649)
 shape = SubResource("RectangleShape2D_dj0yx")
 
+[node name="Dialogue" parent="." instance=ExtResource("9_rskpq")]
+visible = false
+
+[node name="Enemy" parent="." instance=ExtResource("10_dnr04")]
+position = Vector2(3436, 292)
+
+[node name="Area_SS" type="Area2D" parent="Enemy"]
+
+[node name="Collision" type="CollisionShape2D" parent="Enemy/Area_SS"]
+position = Vector2(62.5, -22)
+shape = SubResource("RectangleShape2D_nsu5i")
+debug_color = Color(0.753493, 0.37196, 0.689078, 0.42)
+
 [connection signal="GameOver" from="Player" to="." method="_on_player_game_over"]
 [connection signal="mouse_entered" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_entered"]
 [connection signal="mouse_exited" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_exited"]
 [connection signal="body_entered" from="Death_Area" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="Enemy/Area_SS" to="." method="_on_area_ss_body_entered"]

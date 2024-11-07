@@ -362,7 +362,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cup4"]
-size = Vector2(38, 60)
+size = Vector2(25, 20)
 
 [node name="player_td" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
@@ -392,7 +392,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 2)
+position = Vector2(1.5, 22)
 shape = SubResource("RectangleShape2D_5cup4")
 debug_color = Color(0.846192, 0.268838, 0.668871, 0.42)
 

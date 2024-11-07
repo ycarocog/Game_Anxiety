@@ -14,10 +14,15 @@ config/name="Anxiety"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Main="*res://Script/Autoload/main.gd"
+
 [display]
 
 window/size/viewport_width=576
 window/size/viewport_height=324
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://l0jorritb706"]
+
+[ext_resource type="Texture2D" uid="uid://ciees3jpxqw4d" path="res://Assets/Banner.png" id="1_78tg4"]
+[ext_resource type="Script" path="res://Script/dialogue.gd" id="1_h5g2i"]
+[ext_resource type="FontFile" uid="uid://clc18a58r616e" path="res://Assets/PressStart2P.ttf" id="2_050et"]
+[ext_resource type="Texture2D" uid="uid://do3h3m8haiuy4" path="res://Assets/Quadro.png" id="3_ig2et"]
+
+[node name="Dialogue" type="CanvasLayer"]
+script = ExtResource("1_h5g2i")
+
+[node name="Box_Dialogue" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.007
+anchor_top = 0.577
+anchor_right = 1.0
+anchor_bottom = 0.948
+offset_left = -0.0320001
+offset_top = 0.0519867
+offset_right = -383.0
+offset_bottom = -80.152
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture = ExtResource("1_78tg4")
+
+[node name="Label" type="Label" parent="Box_Dialogue"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 182.0
+offset_bottom = 35.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_050et")
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 3
+
+[node name="Box_Image" type="TextureRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 12.0
+offset_right = -96.0
+offset_bottom = 52.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+texture = ExtResource("3_ig2et")
+
+[node name="Icon" type="TextureRect" parent="Box_Image"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

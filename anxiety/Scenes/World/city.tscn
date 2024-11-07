@@ -1,36 +1,126 @@
-[gd_scene load_steps=13 format=4 uid="uid://djhs7vx4bukdr"]
+[gd_scene load_steps=26 format=4 uid="uid://djhs7vx4bukdr"]
 
 [ext_resource type="Texture2D" uid="uid://bpyvhyq3xjens" path="res://Assets/Map.png" id="1_54uvl"]
 [ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_64q28"]
+[ext_resource type="Script" path="res://Script/city.gd" id="1_q1i3s"]
 [ext_resource type="PackedScene" uid="uid://xt4qghslr78e" path="res://Scenes/player_td.tscn" id="3_qdlyw"]
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="4_b4pvl"]
+[ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="6_yhvpx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4bxi"]
 shader = ExtResource("1_64q28")
 shader_parameter/change = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cf5x0"]
+size = Vector2(124, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikvlw"]
+size = Vector2(50, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42u7g"]
+size = Vector2(50, 69.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghjxm"]
+size = Vector2(59, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1xar"]
+size = Vector2(630, 305.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlnd"]
-size = Vector2(424, 318)
+size = Vector2(424, 409)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ik5c"]
-size = Vector2(277, 183)
+size = Vector2(277, 233.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v41n8"]
-size = Vector2(297, 174)
+size = Vector2(297, 225)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdjg8"]
-size = Vector2(42, 380.5)
+size = Vector2(53, 380.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhhy4"]
 size = Vector2(163, 53.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hlgc"]
-size = Vector2(73.5, 203.5)
+size = Vector2(73.5, 188.25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n74xu"]
 radius = 73.0069
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4ugn"]
+size = Vector2(186.25, 181)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbwsl"]
+size = Vector2(245, 147)
+
+[sub_resource type="Animation" id="Animation_p4j8y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3e12o"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a5gpt"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_scene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c08ju"]
+_data = {
+"RESET": SubResource("Animation_p4j8y"),
+"fade_in": SubResource("Animation_3e12o"),
+"fade_out": SubResource("Animation_a5gpt")
+}
+
 [node name="City" type="Node2D"]
+script = ExtResource("1_q1i3s")
 
 [node name="Sprite_City" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_g4bxi")
@@ -39,7 +129,7 @@ scale = Vector2(3.07, 3.02632)
 texture = ExtResource("1_54uvl")
 
 [node name="player_td" parent="." instance=ExtResource("3_qdlyw")]
-position = Vector2(389, 492)
+position = Vector2(750, 515)
 
 [node name="Camera" type="Camera2D" parent="player_td"]
 zoom = Vector2(0.9, 0.9)
@@ -52,34 +142,74 @@ editor_draw_limits = true
 [node name="Tiles" parent="." instance=ExtResource("4_b4pvl")]
 tile_map_data = PackedByteArray("AAAAAP//AQABAAIAAAD/////AQAAAAIAAAABAP//AQACAAIAAAD//wAAAQACAAAAAAD//wEAAQACAAIAAAD//wIAAQACAAAAAAD//wMAAQACAAAAAAD//wQAAQACAAAAAAD//wUAAQACAAAAAAD//wYAAQACAAAAAAD//wcAAQACAAAAAAD//wgAAQACAAAAAAD//wkAAQACAAAAAAD//woAAQACAAIAAAD//wsAAQACAAAAAAD//wwAAQACAAAAAAD//w0AAQACAAAAAAD//w4AAQACAAAAAAD//w8AAQACAAAAAAD//xAAAQACAAAAAAD//xEAAQAAAAAAAAAVABIAAQACAAIAAAAUABIAAQABAAIAAAATABIAAQAAAAIAAAASABIAAQACAAIAAAARABIAAQAAAAIAAAAQABIAAQAAAAIAAAAPABIAAQAAAAIAAAAOABIAAQAAAAIAAAANABIAAQAAAAIAAAAMABIAAQAAAAIAAAALABIAAQAAAAIAAAAKABIAAQAAAAIAAAAJABIAAQACAAAAAAAHABIAAQACAAIAAAAIABIAAQAAAAAAAAAFABIAAQABAAIAAAAGABIAAQABAAIAAAAEABIAAQAAAAIAAAADABIAAQACAAIAAAACABIAAQABAAIAAAABABIAAQAAAAIAAAAAABIAAQACAAIAAAD//xIAAQAAAAIAAAAWABIAAQAAAAIAAAAXABIAAQABAAIAAAAYABIAAQACAAIAAAAYABEAAQACAAAAAAAYABAAAQACAAIAAAAYAA8AAQACAAIAAAAYAA4AAQACAAIAAAAYAA0AAQACAAIAAAAYAAwAAQACAAIAAAAYAAMAAQACAAIAAAAYAAQAAQACAAAAAAAYAAUAAQACAAEAAAAYAAYAAQACAAEAAAAYAAcAAQACAAEAAAAYAAgAAQACAAEAAAAYAAkAAQACAAEAAAAYAAoAAQACAAEAAAAYAAsAAQACAAEAAAAYAP//AQACAAAAAAAYAAAAAQACAAEAAAAYAAEAAQACAAEAAAAYAAIAAQACAAEAAAACAP//AQAAAAIAAAADAP//AQABAAIAAAAEAP//AQABAAIAAAAFAP//AQABAAIAAAAGAP//AQABAAIAAAAHAP//AQABAAIAAAAIAP//AQABAAIAAAAJAP//AQABAAIAAAAKAP//AQABAAIAAAALAP//AQABAAIAAAAMAP//AQABAAIAAAANAP//AQABAAIAAAAOAP//AQABAAIAAAAPAP//AQABAAIAAAAQAP//AQABAAIAAAARAP//AQABAAIAAAASAP//AQABAAIAAAATAP//AQABAAIAAAAUAP//AQABAAIAAAAVAP//AQABAAIAAAAWAP//AQABAAIAAAAXAP//AQACAAIAAAA=")
 
+[node name="Areas_Interact" type="Node2D" parent="."]
+
+[node name="Apartment" type="Area2D" parent="Areas_Interact"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_Interact/Apartment"]
+position = Vector2(141, 402.5)
+shape = SubResource("RectangleShape2D_cf5x0")
+
+[node name="House" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/House"]
+position = Vector2(850, 930.5)
+shape = SubResource("RectangleShape2D_ikvlw")
+
+[node name="House2" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/House2"]
+position = Vector2(1168, 925.75)
+shape = SubResource("RectangleShape2D_42u7g")
+
+[node name="House3" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/House3"]
+position = Vector2(1212, 399)
+shape = SubResource("RectangleShape2D_42u7g")
+
+[node name="Store" type="Area2D" parent="Areas_Interact"]
+position = Vector2(221, 5)
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Store"]
+position = Vector2(1211.5, 393)
+shape = SubResource("RectangleShape2D_ghjxm")
+
+[node name="Park" type="Area2D" parent="Areas_Interact"]
+position = Vector2(221, 5)
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Park"]
+position = Vector2(999, 541.25)
+shape = SubResource("RectangleShape2D_k1xar")
+
 [node name="Collisions" type="Node2D" parent="."]
 
 [node name="Apartment" type="StaticBody2D" parent="Collisions"]
 collision_layer = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Collisions/Apartment"]
-position = Vector2(235, 166)
+position = Vector2(235, 211.5)
 shape = SubResource("RectangleShape2D_oqlnd")
 
 [node name="House1" type="StaticBody2D" parent="Collisions"]
 collision_layer = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Collisions/House1"]
-position = Vector2(844, 801.5)
+position = Vector2(844, 821.063)
 shape = SubResource("RectangleShape2D_1ik5c")
 
 [node name="House2" type="StaticBody2D" parent="Collisions"]
 collision_layer = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Collisions/House2"]
-position = Vector2(1210, 289)
+position = Vector2(1210, 302.125)
 shape = SubResource("RectangleShape2D_1ik5c")
 
 [node name="House3" type="StaticBody2D" parent="Collisions"]
 collision_layer = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Collisions/House3"]
-position = Vector2(1168.5, 798)
+position = Vector2(1168.5, 826.5)
 shape = SubResource("RectangleShape2D_v41n8")
 
 [node name="Wall_Flowers" type="StaticBody2D" parent="Collisions"]
@@ -94,7 +224,7 @@ position = Vector2(688, 188)
 shape = SubResource("RectangleShape2D_hdjg8")
 
 [node name="Collision4" type="CollisionShape2D" parent="Collisions/Wall_Flowers"]
-position = Vector2(739, 184)
+position = Vector2(744.5, 184)
 shape = SubResource("RectangleShape2D_hdjg8")
 
 [node name="Collision5" type="CollisionShape2D" parent="Collisions/Wall_Flowers"]
@@ -102,7 +232,7 @@ position = Vector2(1053, 189)
 shape = SubResource("RectangleShape2D_hdjg8")
 
 [node name="Collision6" type="CollisionShape2D" parent="Collisions/Wall_Flowers"]
-position = Vector2(996, 188)
+position = Vector2(990, 188)
 shape = SubResource("RectangleShape2D_hdjg8")
 
 [node name="Collision2" type="CollisionShape2D" parent="Collisions/Wall_Flowers"]
@@ -124,11 +254,11 @@ shape = SubResource("RectangleShape2D_yhhy4")
 collision_layer = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Collisions/Park_Wall2"]
-position = Vector2(797.75, 277.75)
+position = Vector2(797.75, 281.25)
 shape = SubResource("RectangleShape2D_0hlgc")
 
 [node name="Collision2" type="CollisionShape2D" parent="Collisions/Park_Wall2"]
-position = Vector2(952, 278)
+position = Vector2(952, 282.125)
 shape = SubResource("RectangleShape2D_0hlgc")
 
 [node name="Well" type="StaticBody2D" parent="Collisions"]
@@ -137,3 +267,44 @@ collision_layer = 4
 [node name="Collision" type="CollisionShape2D" parent="Collisions/Well"]
 position = Vector2(1451, 849)
 shape = SubResource("CircleShape2D_n74xu")
+
+[node name="Store" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Store"]
+position = Vector2(1442.88, 328.5)
+shape = SubResource("RectangleShape2D_q4ugn")
+
+[node name="Teto" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Teto"]
+position = Vector2(878, 71.5)
+shape = SubResource("RectangleShape2D_gbwsl")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c08ju")
+}
+autoplay = "fade_in"
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="Color" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue" parent="." instance=ExtResource("6_yhvpx")]
+visible = false
+
+[connection signal="body_entered" from="Areas_Interact/Apartment" to="." method="_on_apartment_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/House" to="." method="_on_house_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/House2" to="." method="_on_house_2_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/House3" to="." method="_on_house_3_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/Store" to="." method="_on_store_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/Park" to="." method="_on_park_body_entered"]

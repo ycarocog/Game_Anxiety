@@ -19,6 +19,9 @@ var force_jump:int = -300
 var force_gravity:int = 900
 var gravity_wall:int = 1200
 
+func _ready() -> void:
+	Main.player = self
+
 func _physics_process(delta: float) -> void:
 	check_move()
 	move()

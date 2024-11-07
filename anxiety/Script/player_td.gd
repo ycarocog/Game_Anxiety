@@ -7,6 +7,9 @@ const SPEED = 200
 @onready var sprite_2d: AnimationPlayer = $Animation
 @onready var arma: CollisionShape2D = $"attack area/arma"
 
+func _ready() -> void:
+	Main.player = self
+
 func _physics_process(_delta: float) -> void:
 	move()
 	attack()

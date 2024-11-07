@@ -1,0 +1,262 @@
+[gd_scene load_steps=23 format=4 uid="uid://d330lhkql77c8"]
+
+[ext_resource type="Texture2D" uid="uid://b1w7cck86ah4a" path="res://Assets/MERRCADO.png" id="1_ocppa"]
+[ext_resource type="Script" path="res://Script/supermarket.gd" id="1_tgltu"]
+[ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_yp2cv"]
+[ext_resource type="Texture2D" uid="uid://cfmd8nvyr73o2" path="res://Assets/Player_run.png" id="2_mj1se"]
+[ext_resource type="PackedScene" uid="uid://bi3e17xira5y8" path="res://Scenes/garota.tscn" id="2_pyd5h"]
+[ext_resource type="PackedScene" uid="uid://xt4qghslr78e" path="res://Scenes/player_td.tscn" id="4_56hgn"]
+[ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="6_jwe3e"]
+[ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="8_yn3cb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ore45"]
+shader = ExtResource("1_yp2cv")
+shader_parameter/change = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ni2wi"]
+shader = ExtResource("1_yp2cv")
+shader_parameter/change = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uuj17"]
+size = Vector2(220, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq7lo"]
+size = Vector2(103, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpgu4"]
+size = Vector2(51, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2xm0"]
+size = Vector2(236, 137.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7w2k"]
+size = Vector2(24, 203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00lxu"]
+size = Vector2(156.5, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv5qr"]
+size = Vector2(94, 311)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ebf"]
+size = Vector2(59, 29)
+
+[sub_resource type="Animation" id="Animation_p4j8y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3e12o"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a5gpt"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_scene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c08ju"]
+_data = {
+"RESET": SubResource("Animation_p4j8y"),
+"fade_in": SubResource("Animation_3e12o"),
+"fade_out": SubResource("Animation_a5gpt")
+}
+
+[node name="Supermarket" type="Node2D"]
+script = ExtResource("1_tgltu")
+
+[node name="Merrcado" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ore45")
+position = Vector2(256, 128.5)
+scale = Vector2(5.12, 5.11)
+texture = ExtResource("1_ocppa")
+
+[node name="Merrcado2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ore45")
+position = Vector2(256, 128.5)
+scale = Vector2(5.12, 5.11)
+texture = ExtResource("1_ocppa")
+
+[node name="Garota" parent="." instance=ExtResource("2_pyd5h")]
+position = Vector2(407, 42)
+
+[node name="Vendendor" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ni2wi")
+position = Vector2(158, 218)
+scale = Vector2(5, 5)
+texture = ExtResource("2_mj1se")
+hframes = 6
+
+[node name="player_td" parent="." instance=ExtResource("4_56hgn")]
+position = Vector2(245, 315)
+
+[node name="Camera" type="Camera2D" parent="player_td"]
+position = Vector2(8, -40)
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = -128
+limit_right = 513
+limit_bottom = 385
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="Tiles" parent="." instance=ExtResource("6_jwe3e")]
+tile_map_data = PackedByteArray("AAD//wUAAQACAAEAAAD//wYAAQABAAIAAAD//wQAAQACAAEAAAD//wMAAQACAAIAAAD//wIAAQACAAIAAAD//wEAAQACAAEAAAD//wAAAQACAAEAAAD/////AQACAAEAAAD///7/AQACAAAAAAD///3/AQAAAAIAAAAAAP3/AQABAAIAAAABAP3/AQABAAIAAAACAP3/AQABAAIAAAADAP3/AQABAAIAAAAEAP3/AQABAAIAAAAFAP3/AQABAAIAAAAGAP3/AQABAAIAAAAHAP3/AQABAAIAAAAIAP3/AQACAAIAAAAIAP7/AQACAAIAAAAIAP//AQACAAIAAAAIAAAAAQACAAIAAAAIAAEAAQACAAIAAAAIAAIAAQACAAIAAAAIAAMAAQACAAIAAAAIAAQAAQACAAIAAAAIAAUAAQACAAIAAAAIAAYAAQACAAIAAAAHAAYAAQABAAIAAAAGAAYAAQABAAIAAAAFAAYAAQABAAIAAAAEAAYAAQABAAIAAAADAAYAAQABAAIAAAACAAYAAQABAAIAAAABAAYAAQABAAIAAAAAAAYAAQABAAIAAAA=")
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Wall"]
+position = Vector2(109, 368.5)
+shape = SubResource("RectangleShape2D_uuj17")
+
+[node name="Caixa" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Caixa"]
+position = Vector2(168.5, 242)
+shape = SubResource("RectangleShape2D_kq7lo")
+
+[node name="Collision2" type="CollisionShape2D" parent="Collisions/Caixa"]
+position = Vector2(24, 241)
+shape = SubResource("RectangleShape2D_kq7lo")
+
+[node name="Tables" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Tables"]
+position = Vector2(354.5, 174.5)
+shape = SubResource("RectangleShape2D_jpgu4")
+
+[node name="Collision2" type="CollisionShape2D" parent="Collisions/Tables"]
+position = Vector2(506, 172)
+shape = SubResource("RectangleShape2D_jpgu4")
+
+[node name="Wall2" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Wall2"]
+position = Vector2(394, 315.875)
+shape = SubResource("RectangleShape2D_r2xm0")
+
+[node name="Prateleiras" type="StaticBody2D" parent="Collisions"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(103, -25)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision2" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(46, -25)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision3" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(175, -32)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision4" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(231, -32)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision5" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(303, -29)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision6" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(359, -29)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Collision7" type="CollisionShape2D" parent="Collisions/Prateleiras"]
+position = Vector2(476, -30)
+shape = SubResource("RectangleShape2D_j7w2k")
+
+[node name="Areas_Interact" type="Node2D" parent="."]
+
+[node name="Caixa" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Caixa"]
+position = Vector2(197.75, 244)
+shape = SubResource("RectangleShape2D_00lxu")
+
+[node name="Garota" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Garota"]
+position = Vector2(419, 90.5)
+shape = SubResource("RectangleShape2D_xv5qr")
+
+[node name="Porta" type="Area2D" parent="Areas_Interact"]
+
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Porta"]
+position = Vector2(248.5, 369.5)
+shape = SubResource("RectangleShape2D_r8ebf")
+
+[node name="Dialogue" parent="." instance=ExtResource("8_yn3cb")]
+visible = false
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c08ju")
+}
+autoplay = "fade_in"
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="Color" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Areas_Interact/Caixa" to="." method="_on_caixa_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/Garota" to="." method="_on_garota_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/Porta" to="." method="_on_porta_body_entered"]
