@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://djhs7vx4bukdr"]
+
+[ext_resource type="Texture2D" uid="uid://bpyvhyq3xjens" path="res://Assets/Map.png" id="1_54uvl"]
+[ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_64q28"]
+[ext_resource type="PackedScene" uid="uid://btt6g64jlilfm" path="res://Scenes/Player/player.tscn" id="2_0i57b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4bxi"]
+shader = ExtResource("1_64q28")
+shader_parameter/change = true
+
+[node name="City" type="Node2D"]
+
+[node name="Sprite_City" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g4bxi")
+position = Vector2(747, 562)
+scale = Vector2(3, 3)
+texture = ExtResource("1_54uvl")
+
+[node name="Player" parent="." instance=ExtResource("2_0i57b")]
+position = Vector2(41, 39)

@@ -6,8 +6,8 @@ uniform bool change = true;
 void fragment() {
 	if (change){
 		COLOR = texture(TEXTURE, UV);
-	float lumi = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
-	COLOR.rgb = vec3(lumi);
+		float lumi = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
+		COLOR.rgb = vec3(lumi);
 	}
 	
 }

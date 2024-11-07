@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://scgjm1q1e0yc"
-path="res://.godot/imported/Player_Idle1.png-3acd23edc018e181c987c5b2086c0b7d.ctex"
+uid="uid://6fgb26nfqrub"
+path="res://.godot/imported/ANTAGONISSTAIDE.png-97ee438f5c82c9c3b72f7ac4c2466d90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Assets/Placeholder/Player_Idle1.png"
-dest_files=["res://.godot/imported/Player_Idle1.png-3acd23edc018e181c987c5b2086c0b7d.ctex"]
+source_file="res://Assets/player/ANTAGONISSTAIDE.png"
+dest_files=["res://.godot/imported/ANTAGONISSTAIDE.png-97ee438f5c82c9c3b72f7ac4c2466d90.ctex"]
 
 [params]
 

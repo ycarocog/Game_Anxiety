@@ -1,13 +1,17 @@
 extends CharacterBody2D
 class_name Player
 
+signal GameOver
+
 @onready var sprite:Sprite2D = get_node("Sprite")
-@onready var timer:Timer = get_node("Coyote_Timer")
+@onready var sprite_material:Material = get_node("Sprite").get_material()
+@onready var animation:AnimationPlayer = get_node("Animation")
+@onready var low_timer:Timer = get_node("Low_Timer")
 
 const SPEED:int = 200
-const WALL_JUMP_PUSHBACK:int = 700
+const WALL_JUMP_PUSHBACK:int = 1500
 
-var is_floor:bool = is_on_floor()
+var can_low:bool = true
 var direction:float
 var force_low:int = 100
 var amount_jump:int = 2
@@ -22,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	gravity(delta)
 	low()
 	move_and_slide()
+	animation_sprite()
 	if is_on_floor():
 		amount_jump = 2
 
@@ -30,35 +35,29 @@ func move()->void:
 	velocity.x = direction * (SPEED + force_low)
 
 func check_move()->void:
-	pass
+	if velocity.x > 0:
+		sprite.flip_h = false
+	elif velocity.x < 0:
+		sprite.flip_h = true
 
 func get_movement()->float:
 	return Input.get_axis("left","right")
 
 func jump()->void:
 	if Input.is_action_just_pressed("jump"):
-		if is_floor and !is_on_floor():
-			print("floor")
-			timer.start()
-		
-		if amount_jump > 0 and !is_on_wall_only() and (is_on_floor() or !timer.is_stopped()):
+		if is_on_floor() or amount_jump > 0:
 			velocity.y = force_jump
-			
-		elif amount_jump > 0 and !is_on_wall_only() and !is_on_floor():
-			#amount_jump = 1
-			velocity.y = force_jump
-		elif  is_on_wall_only():
+		elif is_on_wall_only():
 			amount_jump = 2
 			if velocity.x < 0:
 				velocity.x = WALL_JUMP_PUSHBACK
-				velocity.y = force_jump
+				velocity.y = force_jump 
 			elif velocity.x > 0:
 				velocity.x = -WALL_JUMP_PUSHBACK
+				velocity.y = force_jump 
+			else :
 				velocity.y = force_jump
 		amount_jump -= 1
-
-func jump_wall()->void:
-	pass
 
 func gravity(delta:float)->void:
 	if is_on_wall_only() and !Input.is_action_just_pressed("jump"):
@@ -67,16 +66,24 @@ func gravity(delta:float)->void:
 		velocity.y += force_gravity * delta
 
 func low()->void:
-	if Input.is_action_just_pressed("low"):
-		force_low = SPEED * 8
-		
+	if Input.is_action_just_pressed("low") and can_low:
+		can_low = false
+		low_timer.start()
 		if sprite.flip_h:
-			direction = -1
+			force_low = SPEED * 8
 		elif  !sprite.flip_h:
-			direction = 1
+			force_low = SPEED * 8
 	else :
 		force_low = 0
 
+func animation_sprite()->void:
+	if velocity.y < 0:
+		animation.play("jump")
+	elif velocity.x != 0:
+		animation.play("walk")
+	else :
+		animation.play("idle")
 
-func _on_coyote_timer_timeout() -> void:
-	pass # Replace with function body.
+
+func _on_low_timer_timeout() -> void:
+	can_low = true
