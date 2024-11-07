@@ -4,6 +4,7 @@ var player:CharacterBody2D
 
 signal ChangeScene
 
+var final_scene:bool = false
 var position_player_td:Vector2 = Vector2()
 var can_change_scene:bool = false
 var in_scene:bool
@@ -31,4 +32,10 @@ func change_scene(scene:String)->void:
 			position_player_td = Vector2(865,516)
 			can_change_scene = false
 		"supermarket":
-			pass
+			scene_path = "res://Scenes/World/level_2ss.tscn"
+			can_change_scene = false
+		"SS2":
+			scene_path = "res://Scenes/World/city.tscn"
+			position_player_td = Vector2(864,406)
+			final_scene = true
+			can_change_scene = false

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cybmwhp3sww5k"]
+
+[ext_resource type="Script" path="res://Script/interface.gd" id="1_h2key"]
+[ext_resource type="Texture2D" uid="uid://bpy4nhsefvh2y" path="res://Assets/ANXIETY_1.jpg" id="1_reqhm"]
+[ext_resource type="Texture2D" uid="uid://ckntfhxtapq2x" path="res://Assets/play_icon.png" id="2_cwpsr"]
+[ext_resource type="Texture2D" uid="uid://bu0r1qgp6re00" path="res://Assets/creditis_icon.png" id="3_wuk5w"]
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h2key")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -55.0
+offset_right = 575.0
+offset_bottom = 323.0
+texture = ExtResource("1_reqhm")
+expand_mode = 1
+
+[node name="Play" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 24.0
+offset_right = 568.0
+offset_bottom = 64.0
+texture = ExtResource("2_cwpsr")
+expand_mode = 1
+
+[node name="Play2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 92.0
+offset_right = 568.0
+offset_bottom = 132.0
+texture = ExtResource("3_wuk5w")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="Play" to="." method="_on_play_mouse_exited"]

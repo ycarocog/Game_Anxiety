@@ -69,3 +69,7 @@ func _on_park_body_entered(body: Node2D) -> void:
 		dialogue.label.text = "Esse lugar... Por que eu fui tão idiota?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 		dialogue.place = "parque"
+
+
+func _on_park_2_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

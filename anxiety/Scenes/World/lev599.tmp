@@ -216,5 +216,3 @@ position = Vector2(3436, 292)
 position = Vector2(62.5, -22)
 shape = SubResource("RectangleShape2D_3httb")
 debug_color = Color(0.753493, 0.37196, 0.689078, 0.42)
-
-[connection signal="body_entered" from="Enemy/Area_SS" to="." method="_on_area_ss_body_entered"]
