@@ -208,5 +208,6 @@ one_shot = true
 
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_g0h47")
+volume_db = -11.243
 
 [connection signal="timeout" from="Low_Timer" to="." method="_on_low_timer_timeout"]

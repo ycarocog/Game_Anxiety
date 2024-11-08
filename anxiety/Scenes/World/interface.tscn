@@ -122,11 +122,11 @@ color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
 [node name="Label" type="RichTextLabel" parent="Credits_scene"]
 offset_right = 575.0
-offset_bottom = 878.0
+offset_bottom = 1020.0
 theme_override_fonts/normal_font = ExtResource("5_cppw4")
 theme_override_fonts/bold_font = ExtResource("6_66vhg")
 bbcode_enabled = true
-text = "[center][b]Game developed:[/b]
+text = "[center][b]GAME DEVELOPED BY:[/b]
 
 Ycaro Gonçalves
 
@@ -135,7 +135,7 @@ Daielly Rocha
 Gabriel Alves
 		     
 
-[b]CHARACTER DESIGN :[/b]
+[b]CHARACTER DESIGN:[/b]
 
 Daielly Rocha
 
@@ -170,6 +170,12 @@ Ycaro Gonçalves
 
 Daielly Rocha
 
+
+[b] Writting:[/b]
+
+Gabriel Alves
+
+
 [b]Contatos Instagram[/b]
 
 Gabriel Alves - @gabriel_twobits
@@ -181,11 +187,12 @@ Ycaro Gonçalves - @alasycaro
 
 [b]OBRIGADO POR JOGAR[/b]
 "
+fit_content = true
 scroll_active = false
 
 [node name="Main_theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_8dcy4")
-volume_db = -30.0
+volume_db = -15.946
 autoplay = true
 parameters/looping = true
 

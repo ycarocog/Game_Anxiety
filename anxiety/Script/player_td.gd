@@ -42,11 +42,11 @@ func animate() -> void:
 		set_physics_process(false)
 	elif Input.is_action_pressed("right"):
 		sprite_2d.play("side")
-		arma.position.x =  40
+		arma.position.x = 25
 		sprite.flip_h = false
 	elif Input.is_action_pressed("left"):
 		sprite_2d.play("side")
-		arma.position.x = -40
+		arma.position.x = -25
 		sprite.flip_h = true
 	elif Input.is_action_pressed("up"):
 		sprite_2d.play("up")

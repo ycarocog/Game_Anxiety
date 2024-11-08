@@ -339,12 +339,12 @@ debug_color = Color(0.970454, 0.0837896, 0.383566, 0.42)
 
 [node name="Main_theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_2ql77")
-volume_db = -30.0
+volume_db = -15.009
 parameters/looping = true
 
 [node name="Good_mood" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_3qk5k")
-volume_db = -30.0
+volume_db = -15.009
 parameters/looping = true
 
 [connection signal="body_entered" from="Areas_Interact/Apartment" to="." method="_on_apartment_body_entered"]

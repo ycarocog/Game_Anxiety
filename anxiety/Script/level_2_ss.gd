@@ -14,12 +14,20 @@ func _ready() -> void:
 	tween_scene.tween_property(dialogue,"visible",true,0.9)
 	player.set_physics_process(false)
 	player.animation.play("idle")
-	dialogue.label.text = "Por que ela está aqui?"
+	dialogue.label.text = "Droga, isso denovo."
 	dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png") 
-	dialogue.msg_queue.push_back("Eu não consigo falar com ela, estou com medo")
+	dialogue.msg_queue.push_back("Não posso fazer isso, não dá pra falar com ela")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("como se nada tivesse acontecido.")
 	dialogue.icons.push_back("res://Assets/icon_boy.png") 
-	dialogue.msg_queue.push_back("Tenho que ser forte")
-	dialogue.icons.push_back("res://Assets/icon_boy.png") 
+	dialogue.msg_queue.push_back("Mas também não posso ficar parado aqui igual um imbecil...")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("Quem se importa com comprar comida?")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("Vou dar meia-volta e ir pra casa, é o melhor a ser feito.")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("Mas antes...")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
 	Main.in_scene = true
 
 func _input(_event: InputEvent) -> void:
@@ -40,16 +48,24 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
 		player.set_physics_process(false)
 		player.animation.play("idle")
-		dialogue.label.text = "Você sabe que ela não quer nada com você"
+		dialogue.label.text = "Voltou pra me dar a razão?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Paraa, você está mentindo!")
+		dialogue.msg_queue.push_back("Tá tudo bem, eu só preciso de um tempo em casa.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Será mesmo?Então porque você foge dela?")
+		dialogue.msg_queue.push_back("Por que ir pra casa?")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Por que você fugiu agora?")
+		dialogue.msg_queue.push_back("Por que não só ficar aqui?")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("O que?")
+		dialogue.msg_queue.push_back("É seguro e vai te livrar de repetir os mesmos erros.")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("Erros dos quais você sabe que vai repetir.")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("Seguro? Os espinhos traiçoeiros ali atrás diziam outra coisa.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Foi para o seu próprio bem.")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("Mas se quer continuar escravo desse mundo, vá em frente.")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		Main.final_scene = true
 		dialogue.place = "SS2"
 		Main.can_change_scene = true

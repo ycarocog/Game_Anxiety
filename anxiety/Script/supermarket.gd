@@ -32,7 +32,7 @@ func _on_caixa_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "OLÁ COMO POSSO AJUDAR? SEJA BEM-VINDO!"
+		dialogue.label.text = "Olá, garoto! Bem no horário de sempre. Fique à vontade."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_vendedor.png")
 		Main.in_scene = true
 
@@ -48,9 +48,13 @@ func _on_garota_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Oii, você está bem?"
+		dialogue.label.text = "Oi, quanto tempo."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_garota.png")
-		dialogue.msg_queue.push_back("Hann, Ehhn.")
+		dialogue.msg_queue.push_back("Veio pelo meu convite, ou veio para as compras do mês?")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("*risadinha*")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("Bom, na verdade eu...")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
 		dialogue.place = "supermarket"
 		Main.can_change_scene = true

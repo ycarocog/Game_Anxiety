@@ -25,8 +25,13 @@ func change_scene()->void:
 func _process(_delta: float) -> void:
 	if check_dialog and !Main.world_color:
 		dialogue.label.text = "*Você recebeu uma mensagem*"
-		dialogue.msg_queue.push_back("Queria falar com você pessoalmente")
+		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_cell.png")
+		dialogue.msg_queue.push_back("Queria falar com você pessoalmente.")
 		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("A gente pode se encontrar no mercado?")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("...")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
 		Main.can_change_scene = true
 		check_dialog = false
 		dialogue.place = "quarto"
@@ -50,8 +55,10 @@ func _on_mesa_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Preciso comprar comida..."
+		dialogue.label.text = "Alarme pra ir comprar comida..."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Esse é o melhor horário pra evitar multidões.")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
 		Main.in_scene = true
 
 

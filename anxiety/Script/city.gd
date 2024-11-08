@@ -100,7 +100,7 @@ func _on_park_body_entered(body: Node2D) -> void:
 		Main.can_change_scene = true
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Esse lugar... Por que eu fui tão idiota?"
+		dialogue.label.text = "O parque... droga, não quero lembrar..."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 		dialogue.place = "parque"
 
@@ -112,13 +112,19 @@ func _on_final_scene_body_entered(body: Node2D) -> void:
 		Main.can_change_scene = true
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Você não cansa de fugir dos seus problemas?"
+		dialogue.label.text = "É essa sua solução? Ir pra casa fugir dos problemas?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Estou cansado de fugir de você")
+		dialogue.msg_queue.push_back("Qualquer opção que eu escolha, você vem encher meu saco.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Eu quero ser feliz")
+		dialogue.msg_queue.push_back("Eu não queria precisar fugir, pra começo de conversa!")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("ENTÃO ME DERROTE, ME ATAQUE!!")
+		dialogue.msg_queue.push_back("VOCÊ FEZ A SUA ESCOLHA!")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("REALMENTE QUER DEIXAR DE FUGIR?!!")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("NÃO EXISTE ESCAPATÓRIA PRA ONDE VAMOS AGORA!!")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("DERROTE-ME, SE QUER TANTO SE SUJAR A IMUNDICE DESSA TERRA!!")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.place = "cena_final"
 
@@ -130,19 +136,33 @@ func _on_amor_area_body_entered(body: Node2D) -> void:
 		Main.can_change_scene = true
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Você está bem??"
+		dialogue.label.text = "Tá tudo bem com você?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_garota.png")
-		dialogue.msg_queue.push_back("AHH, oii, estou sim, melhor agora")
+		dialogue.msg_queue.push_back("Estou bem melhor agora, agradeço a preocupação.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Me desculpa por aquilo")
+		dialogue.msg_queue.push_back("Olha, desculpa por ter fugido mais cedo.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Tudo bem, eu gostei da sua declaração")
+		dialogue.msg_queue.push_back("Tá tudo bem, também fico diferente perto de você...")
 		dialogue.icons.push_back("res://Assets/icon_garota.png")
-		dialogue.msg_queue.push_back("Também gosto de você")
+		dialogue.msg_queue.push_back("Hoje mais cedo, eu queria te chamar pra sair...")
 		dialogue.icons.push_back("res://Assets/icon_garota.png")
-		dialogue.msg_queue.push_back("Sério?")
+		dialogue.msg_queue.push_back("Fiquei bem nervosa.")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("Nossa, eu... não tava esperando por isso.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Simmm")
+		dialogue.msg_queue.push_back("Isso é um sim? Um talvez?")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("Com certeza é um sim! A que horas você tinha em mente?")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Bom, acho que a gente poderia ir no parque agora...")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("Pra relembrar os velhos tempos, sabe?")
+		dialogue.icons.push_back("res://Assets/icon_garota.png")
+		dialogue.msg_queue.push_back("Uau... claro, por mim tá ótimo.")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Só preciso passar em casa pra trocar de roupa.")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Estarei aqui te esperando!")
 		dialogue.icons.push_back("res://Assets/icon_garota.png")
 		Main.can_change_color = true
 		dialogue.place = "amor"
@@ -153,5 +173,5 @@ func _on_amor_area_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Vamos sair depois"
+		dialogue.label.text = "Você não tinha ido em casa?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_garota.png")

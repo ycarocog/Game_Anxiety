@@ -15,10 +15,16 @@ func _ready() -> void:
 	tween_scene.tween_property(dialogue,"visible",true,0.9)
 	player.set_physics_process(false)
 	player.animation.play("idle")
-	dialogue.label.text = "Eu queria voltar no tempo"
-	dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png") 
-	dialogue.msg_queue.push_back("É claro que uma pessoa como ela nunca iria ter algo comigo")
-	dialogue.icons.push_back("res://Assets/icon_boy.png") 
+	dialogue.label.text = "Ótimo... aqui é mais tranquilo."
+	dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("Mas será que vale a pena ficar aqui?")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("As mesmas ações só vão me levar aos mesmos erros...")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("Certo, se tem alguém que deve saber a saída,")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
+	dialogue.msg_queue.push_back("sou eu.")
+	dialogue.icons.push_back("res://Assets/icon_boy.png")
 	Main.in_scene = true
 	#player.sprite_material.set_shader_parameter("change", false)
 	#parallax_shader.set_shader_parameter("change",false)
@@ -49,17 +55,19 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 		Main.can_change_scene = true
 		player.set_physics_process(false)
 		player.animation.play("idle")
-		dialogue.label.text = "Tão frágil, sempre vive assustado, fugindo dos problemas"
+		dialogue.label.text = "Sempre assustado com o passado, fugindo dos problemas."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/player/icon_enemy.png")
+		dialogue.msg_queue.push_back("Um pouco tarde demais para fugir.")
+		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.msg_queue.push_back("Quem é você?")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Você que era pra responder")
+		dialogue.msg_queue.push_back("À essa altura, já deveria saber.")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Você achou mesmo que ela iria querer você?")
+		dialogue.msg_queue.push_back("Vai encontrar ela e repetir tudo denovo?")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Cala a boca!!")
+		dialogue.msg_queue.push_back("...eu só queria ir no mercado.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
-		dialogue.msg_queue.push_back("Você só sabe fugir")
+		dialogue.msg_queue.push_back("Tudo bem. Vá. Fuja.")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.place = "SS1"
 		
