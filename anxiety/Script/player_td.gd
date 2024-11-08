@@ -7,6 +7,8 @@ const SPEED = 200
 @onready var sprite_2d: AnimationPlayer = $Animation
 @onready var arma: CollisionShape2D = $"attack area/arma"
 
+var amount:int = 0
+
 func _ready() -> void:
 	Main.player = self
 
@@ -25,7 +27,7 @@ func move() -> void:
 	move_and_slide()
 
 func attack():
-	if Input.is_action_just_pressed("jump") and Main.can_attack:
+	if Input.is_action_just_pressed("jump") and !can_attack:
 		can_attack = true
 
 func animate() -> void:
@@ -59,3 +61,7 @@ func on_animation_finished(anim_name: StringName) -> void:
 	elif anim_name == "attack":
 		set_physics_process(true)
 		can_attack = false
+
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		amount += 1

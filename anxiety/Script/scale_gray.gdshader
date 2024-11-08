@@ -9,7 +9,7 @@ void fragment() {
 		float lumi = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
 		COLOR.rgb = vec3(lumi);
 	}
-
+	
 }
 
 //void light() {

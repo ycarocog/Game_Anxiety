@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=4 uid="uid://dowpl8aqajvlh"]
+[gd_scene load_steps=17 format=4 uid="uid://dowpl8aqajvlh"]
 
-[ext_resource type="Script" path="res://Script/level_2_ss.gd" id="1_5bfrd"]
 [ext_resource type="PackedScene" uid="uid://btt6g64jlilfm" path="res://Scenes/Player/player.tscn" id="1_onxhi"]
 [ext_resource type="PackedScene" uid="uid://cns5qkkccmb6c" path="res://Scenes/espinhos.tscn" id="2_0k4bj"]
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="3_fuow0"]
@@ -16,14 +15,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animation_fade/ColorRect:color")
+tracks/0/path = NodePath("Game_Over/Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3xdlb"]
@@ -31,43 +30,43 @@ resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animation_fade/ColorRect:color")
+tracks/0/path = NodePath("Game_Over/Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wtq3h"]
 resource_name = "fade_out"
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Game_Over/Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"change_scene"
 }]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Animation_fade/ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fa8s1"]
@@ -88,7 +87,6 @@ size = Vector2(3177, 262)
 size = Vector2(643, 242)
 
 [node name="Level2SS" type="Node2D"]
-script = ExtResource("1_5bfrd")
 
 [node name="Player" parent="." instance=ExtResource("1_onxhi")]
 position = Vector2(53, 292)
@@ -143,39 +141,11 @@ position = Vector2(723, 240)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_lwend")
 
-[node name="Death_Area" type="Area2D" parent="."]
-
-[node name="Collision" type="CollisionShape2D" parent="Death_Area"]
-position = Vector2(1750, 649)
-shape = SubResource("RectangleShape2D_ofkyd")
-
-[node name="Dialogue" parent="." instance=ExtResource("8_mntfk")]
-visible = false
-
-[node name="Enemy" parent="." instance=ExtResource("9_rmeu3")]
-position = Vector2(3436, 292)
-
-[node name="Area_SS" type="Area2D" parent="Enemy"]
-
-[node name="Collision" type="CollisionShape2D" parent="Enemy/Area_SS"]
-position = Vector2(62.5, -22)
-shape = SubResource("RectangleShape2D_3httb")
-debug_color = Color(0.753493, 0.37196, 0.689078, 0.42)
-
-[node name="Animation_fade" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Animation_fade"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="Game_Over" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="Control" type="Control" parent="Game_Over"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -191,22 +161,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-
-[node name="Retry" type="TextureRect" parent="Game_Over/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("7_4ogia")
-expand_mode = 1
 
 [node name="Label" type="Label" parent="Game_Over/Control"]
 layout_mode = 1
@@ -226,8 +180,37 @@ theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[connection signal="GameOver" from="Player" to="." method="_on_player_game_over"]
-[connection signal="body_entered" from="Death_Area" to="." method="_on_death_area_body_entered"]
-[connection signal="body_entered" from="Enemy/Area_SS" to="." method="_on_area_ss_body_entered"]
-[connection signal="mouse_entered" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_entered"]
-[connection signal="mouse_exited" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_exited"]
+[node name="Retry" type="TextureRect" parent="Game_Over/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_4ogia")
+expand_mode = 1
+
+[node name="Death_Area" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Death_Area"]
+position = Vector2(1750, 649)
+shape = SubResource("RectangleShape2D_ofkyd")
+
+[node name="Dialogue" parent="." instance=ExtResource("8_mntfk")]
+visible = false
+
+[node name="Enemy" parent="." instance=ExtResource("9_rmeu3")]
+position = Vector2(3436, 292)
+
+[node name="Area_SS" type="Area2D" parent="Enemy"]
+
+[node name="Collision" type="CollisionShape2D" parent="Enemy/Area_SS"]
+position = Vector2(62.5, -22)
+shape = SubResource("RectangleShape2D_3httb")
+debug_color = Color(0.753493, 0.37196, 0.689078, 0.42)
