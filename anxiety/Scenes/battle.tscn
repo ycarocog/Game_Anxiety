@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=4 uid="uid://b51esradxwr4f"]
+
+[ext_resource type="Script" path="res://Scenes/battle.gd" id="1_ah14u"]
+[ext_resource type="Texture2D" uid="uid://d4btevtjmv7k4" path="res://Assets/background.png" id="1_pqq33"]
+[ext_resource type="PackedScene" uid="uid://xt4qghslr78e" path="res://Scenes/player_td.tscn" id="2_2xrsj"]
+[ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="3_xddaa"]
+[ext_resource type="Texture2D" uid="uid://r4v4qqdp0rwm" path="res://Assets/retry.png" id="5_6ls0e"]
+[ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="6_nfsku"]
+[ext_resource type="AudioStream" uid="uid://dm0agr3mxqqmx" path="res://Assets/SFX/fight.mp3" id="7_3sslx"]
+
+[node name="battle" type="Node2D"]
+script = ExtResource("1_ah14u")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(317, 167.5)
+scale = Vector2(1.53472, 1.84259)
+texture = ExtResource("1_pqq33")
+
+[node name="player_td" parent="." instance=ExtResource("2_2xrsj")]
+position = Vector2(285, 181)
+
+[node name="Camera2D" type="Camera2D" parent="player_td"]
+position = Vector2(1, -23)
+zoom = Vector2(1.1, 1.1)
+limit_left = 0
+limit_top = 0
+limit_right = 575
+limit_bottom = 319
+editor_draw_limits = true
+
+[node name="Tiles" parent="." instance=ExtResource("3_xddaa")]
+tile_map_data = PackedByteArray("AAAJAAMAAQAAAAAAAAAJAAQAAQAAAAEAAAAJAAUAAQAAAAIAAAAJAAAAAQAAAAAAAAAJAAEAAQAAAAEAAAAJAAIAAQAAAAIAAAAJAP//AQAAAAIAAAAGAP//AQAAAAIAAAAHAP//AQABAAIAAAAIAP//AQACAAIAAAADAP//AQAAAAIAAAAEAP//AQABAAIAAAAFAP//AQACAAIAAAAAAP//AQAAAAIAAAABAP//AQABAAIAAAACAP//AQACAAIAAAD/////AQACAAAAAAD//wAAAQACAAEAAAD//wEAAQACAAIAAAD//wIAAQACAAAAAAD//wMAAQACAAEAAAD//wQAAQACAAIAAAD//wUAAQACAAAAAAD//wYAAQACAAEAAAAAAAYAAQAAAAEAAAABAAYAAQABAAEAAAACAAYAAQACAAEAAAADAAYAAQAAAAEAAAAEAAYAAQABAAEAAAAFAAYAAQACAAEAAAAGAAYAAQAAAAEAAAAHAAYAAQABAAEAAAAIAAYAAQACAAEAAAAAAAUAAQABAAEAAAABAAUAAQABAAEAAAACAAUAAQABAAEAAAADAAUAAQABAAEAAAAEAAUAAQABAAEAAAAFAAUAAQABAAEAAAAGAAUAAQABAAEAAAAHAAUAAQABAAEAAAAIAAUAAQABAAEAAAA=")
+
+[node name="SpawnLocation" type="Node2D" parent="."]
+position = Vector2(44, 109)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="Position" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(44, 188)
+
+[node name="Position2" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(288, 40)
+
+[node name="Position3" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(524, 200)
+
+[node name="Position4" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(289, 304)
+
+[node name="Game_Over" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="Game_Over"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Color" type="ColorRect" parent="Game_Over/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Retry" type="TextureRect" parent="Game_Over/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_6ls0e")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Game_Over/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.5
+offset_top = -34.5
+offset_right = 222.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_nfsku")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3sslx")
+volume_db = -30.0
+autoplay = true
+
+[connection signal="Dead" from="player_td" to="." method="_on_player_td_dead"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_entered"]
+[connection signal="mouse_exited" from="Game_Over/Control/Retry" to="." method="_on_retry_mouse_exited"]

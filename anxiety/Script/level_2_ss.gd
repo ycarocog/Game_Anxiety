@@ -25,7 +25,7 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and game_over.visible and can_click:
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("jump") and game_over.visible and can_click:
+	if Input.is_action_just_pressed("jump") and game_over.visible:
 		get_tree().reload_current_scene()
 
 func change_scene()->void:
@@ -50,16 +50,17 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.msg_queue.push_back("O que?")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
+		Main.final_scene = true
 		dialogue.place = "SS2"
 		Main.can_change_scene = true
 
 func _on_player_game_over() -> void:
+	Main.can_die = true
 	game_over.visible = true
 	player.queue_free()
 
 func _on_retry_mouse_entered() -> void:
 	can_click = true
-	print("entrou")
 	var tween_retry:Tween = create_tween()
 	tween_retry.tween_property(retry,"modulate:a",0.5,0.1)
 
@@ -71,4 +72,5 @@ func _on_retry_mouse_exited() -> void:
 
 func _on_death_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		Main.can_die = true
 		body.GameOver.emit()

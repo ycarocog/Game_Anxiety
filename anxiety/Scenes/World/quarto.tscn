@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ddtu24d5cqke7"]
+[gd_scene load_steps=20 format=4 uid="uid://ddtu24d5cqke7"]
 
 [ext_resource type="Texture2D" uid="uid://bt7dp8kkypi2q" path="res://Assets/World/quarrto.png" id="1_8s1y3"]
 [ext_resource type="Script" path="res://Script/quarto.gd" id="1_cvqml"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="2_w5tcw"]
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="3_h2c6q"]
 [ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="6_0xfpb"]
+[ext_resource type="FontFile" uid="uid://clc18a58r616e" path="res://Assets/PressStart2P.ttf" id="7_l2vs5"]
+[ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="8_s0p43"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tqxhw"]
 shader = ExtResource("2_w5tcw")
@@ -30,6 +32,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_scene/Color:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.1, 0.1, 0.1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits_scene/Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 400)]
 }
 
 [sub_resource type="Animation" id="Animation_3e12o"]
@@ -76,9 +102,38 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_8om1q"]
+resource_name = "credits"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits_scene/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.1, 0.1, 0.1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_scene/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 20),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 550), Vector2(0, 550), Vector2(0, -920)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c08ju"]
 _data = {
 "RESET": SubResource("Animation_p4j8y"),
+"credits": SubResource("Animation_8om1q"),
 "fade_in": SubResource("Animation_3e12o"),
 "fade_out": SubResource("Animation_a5gpt")
 }
@@ -143,6 +198,7 @@ libraries = {
 autoplay = "fade_in"
 
 [node name="Background" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Color" type="ColorRect" parent="Background"]
 anchors_preset = 15
@@ -176,6 +232,84 @@ shape = SubResource("RectangleShape2D_43l3p")
 position = Vector2(253, 94)
 shape = SubResource("RectangleShape2D_ht2ci")
 
+[node name="Credits_scene" type="CanvasLayer" parent="."]
+visible = false
+scale = Vector2(0.6, 0.6)
+transform = Transform2D(0.6, 0, 0, 0.6, 0, 0)
+
+[node name="Color" type="ColorRect" parent="Credits_scene"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0)
+
+[node name="Label" type="RichTextLabel" parent="Credits_scene"]
+offset_top = 400.0
+offset_right = 575.0
+offset_bottom = 1328.0
+theme_override_fonts/normal_font = ExtResource("7_l2vs5")
+theme_override_fonts/bold_font = ExtResource("8_s0p43")
+bbcode_enabled = true
+text = "[center][b]Game developed:[/b]
+
+Ycaro Gonçalves
+
+Daielly Rocha
+
+Gabriel Alves
+		     
+
+[b]CHARACTER DESIGN :[/b]
+
+Daielly Rocha
+
+Ycaro Gonçalves
+
+
+[b]Music:[/b] 
+
+Gabriel Alves
+
+
+[b]Main program:[/b]
+    
+Ycaro Gonçalves
+
+Gabriel Alves
+
+
+[b]Sound program:[/b]
+
+Gabriel Alves
+
+
+[b]Graphic director:[/b]
+
+Ycaro Gonçalves
+  
+
+[b] Scene design:[/b]
+
+Ycaro Gonçalves
+
+Daielly Rocha
+
+[b]Contatos Instagram[/b]
+
+Gabriel Alves - @gabriel_twobits
+
+Daielly Rocha - @yatogami_u.u_
+
+Ycaro Gonçalves - @alasycaro
+
+
+[b]OBRIGADO POR JOGAR[/b]
+"
+scroll_active = false
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="body_entered" from="Area_Scene" to="." method="_on_area_scene_body_entered"]
 [connection signal="body_entered" from="Areas/Mesa" to="." method="_on_mesa_body_entered"]
 [connection signal="body_entered" from="Areas/Cama" to="." method="_on_cama_body_entered"]

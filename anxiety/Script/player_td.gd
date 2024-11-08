@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
+var amount:int = 0
 var can_die: bool = false
 var can_attack: bool = false
 const SPEED = 200
 @onready var sprite: Sprite2D = $Sprite
 @onready var sprite_2d: AnimationPlayer = $Animation
 @onready var arma: CollisionShape2D = $"attack area/arma"
+@onready var attack_sound:AudioStreamPlayer2D = get_node("attack")
+
+signal Dead
 
 func _ready() -> void:
 	Main.player = self
@@ -26,6 +30,7 @@ func move() -> void:
 
 func attack():
 	if Input.is_action_just_pressed("jump") and Main.can_attack:
+		attack_sound.play()
 		can_attack = true
 
 func animate() -> void:
@@ -55,7 +60,11 @@ func kill() -> void:
 
 func on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "dead":
-		var _reload: bool = get_tree().reload_current_scene()
+		Dead.emit()
 	elif anim_name == "attack":
 		set_physics_process(true)
 		can_attack = false
+
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		amount += 1

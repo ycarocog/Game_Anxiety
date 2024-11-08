@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://djhs7vx4bukdr"]
+[gd_scene load_steps=29 format=4 uid="uid://djhs7vx4bukdr"]
 
 [ext_resource type="Texture2D" uid="uid://bpyvhyq3xjens" path="res://Assets/Map.png" id="1_54uvl"]
 [ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_64q28"]
@@ -27,8 +27,8 @@ size = Vector2(59, 72)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1xar"]
 size = Vector2(630, 305.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgl8d"]
-size = Vector2(72, 75.875)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ux5o7"]
+size = Vector2(236.5, 291.313)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlnd"]
 size = Vector2(424, 409)
@@ -123,6 +123,9 @@ _data = {
 "fade_out": SubResource("Animation_a5gpt")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p0sn"]
+size = Vector2(83, 115)
+
 [node name="City" type="Node2D"]
 script = ExtResource("1_q1i3s")
 
@@ -186,12 +189,20 @@ position = Vector2(221, 5)
 position = Vector2(999, 541.25)
 shape = SubResource("RectangleShape2D_k1xar")
 
-[node name="Park2" type="Area2D" parent="Areas_Interact"]
+[node name="Final_scene" type="Area2D" parent="Areas_Interact"]
 position = Vector2(221, 5)
 
-[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Park2"]
-position = Vector2(653, 173)
-shape = SubResource("RectangleShape2D_dgl8d")
+[node name="Collision" type="CollisionShape2D" parent="Areas_Interact/Final_scene"]
+position = Vector2(474, 547)
+shape = SubResource("RectangleShape2D_ux5o7")
+
+[node name="Collision3" type="CollisionShape2D" parent="Areas_Interact/Final_scene"]
+position = Vector2(802, 549.344)
+shape = SubResource("RectangleShape2D_ux5o7")
+
+[node name="Collision2" type="CollisionShape2D" parent="Areas_Interact/Final_scene"]
+position = Vector2(638, 232)
+shape = SubResource("RectangleShape2D_ux5o7")
 
 [node name="Collisions" type="Node2D" parent="."]
 
@@ -315,7 +326,14 @@ visible = false
 
 [node name="Garota" parent="." instance=ExtResource("7_kyfwu")]
 visible = false
-position = Vector2(928, 155)
+position = Vector2(932, 438)
+
+[node name="Amor_area" type="Area2D" parent="Garota"]
+
+[node name="Collision" type="CollisionShape2D" parent="Garota/Amor_area"]
+position = Vector2(-0.5, 9.5)
+shape = SubResource("RectangleShape2D_0p0sn")
+debug_color = Color(0.970454, 0.0837896, 0.383566, 0.42)
 
 [connection signal="body_entered" from="Areas_Interact/Apartment" to="." method="_on_apartment_body_entered"]
 [connection signal="body_entered" from="Areas_Interact/House" to="." method="_on_house_body_entered"]
@@ -323,4 +341,5 @@ position = Vector2(928, 155)
 [connection signal="body_entered" from="Areas_Interact/House3" to="." method="_on_house_3_body_entered"]
 [connection signal="body_entered" from="Areas_Interact/Store" to="." method="_on_store_body_entered"]
 [connection signal="body_entered" from="Areas_Interact/Park" to="." method="_on_park_body_entered"]
-[connection signal="body_entered" from="Areas_Interact/Park2" to="." method="_on_park_2_body_entered"]
+[connection signal="body_entered" from="Areas_Interact/Final_scene" to="." method="_on_final_scene_body_entered"]
+[connection signal="body_entered" from="Garota/Amor_area" to="." method="_on_amor_area_body_entered"]

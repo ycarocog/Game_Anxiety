@@ -4,8 +4,18 @@ var interact_caixa:bool = false
 @onready var dialogue:CanvasLayer = get_node("Dialogue")
 @onready var player:CharacterBody2D = get_node("player_td")
 @onready var animation:AnimationPlayer = get_node("Animation")
+@onready var supermaket:Material = get_node("Merrcado").get_material()
+@onready var vendendor:Material = get_node("Vendendor").get_material()
+@onready var garota:CharacterBody2D = get_node("Garota")
+@onready var area_garota:Area2D = get_node("Areas_Interact/Garota")
 
 func _ready() -> void:
+	if Main.world_color:
+		area_garota.queue_free()
+		garota.queue_free() 
+		supermaket.set_shader_parameter("change", false)
+		vendendor.set_shader_parameter("change", false)
+		
 	Main.ChangeScene.connect(animation_fade_out)
 
 func change_scene()->void:

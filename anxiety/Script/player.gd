@@ -3,6 +3,7 @@ class_name Player
 
 signal GameOver
 
+@onready var sfx:AudioStreamPlayer = get_node("Sfx")
 @onready var sprite:Sprite2D = get_node("Sprite")
 @onready var sprite_material:Material = get_node("Sprite").get_material()
 @onready var animation:AnimationPlayer = get_node("Animation")
@@ -20,6 +21,7 @@ var force_gravity:int = 900
 var gravity_wall:int = 1200
 
 func _ready() -> void:
+	Main.can_die = false
 	Main.player = self
 
 func _physics_process(delta: float) -> void:
@@ -49,16 +51,20 @@ func get_movement()->float:
 func jump()->void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor() or amount_jump > 0:
+			sfx.play()
 			velocity.y = force_jump
 		elif is_on_wall_only():
 			amount_jump = 2
 			if velocity.x < 0:
+				sfx.play()
 				velocity.x = WALL_JUMP_PUSHBACK
 				velocity.y = force_jump 
 			elif velocity.x > 0:
+				sfx.play()
 				velocity.x = -WALL_JUMP_PUSHBACK
 				velocity.y = force_jump 
 			else :
+				sfx.play()
 				velocity.y = force_jump
 		amount_jump -= 1
 

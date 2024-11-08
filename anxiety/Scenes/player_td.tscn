@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://xt4qghslr78e"]
+[gd_scene load_steps=19 format=3 uid="uid://xt4qghslr78e"]
 
 [ext_resource type="Script" path="res://Script/player_td.gd" id="1_2l1ea"]
 [ext_resource type="Texture2D" uid="uid://blcmqbykogwh" path="res://Assets/player/PROTAPAARDE.png" id="2_hus0d"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cly38mocmpplv" path="res://Assets/Batendo.png" id="3_vwprr"]
 [ext_resource type="Texture2D" uid="uid://b5syie77268a1" path="res://Assets/player/ANDANDOFRRENTE (1).png" id="3_ws6o2"]
 [ext_resource type="Texture2D" uid="uid://c8eat76g3u2cb" path="res://Assets/player/CORRENDOCOSTAS.png" id="4_okkla"]
+[ext_resource type="AudioStream" uid="uid://25vw57drvc0x" path="res://Assets/SFX/attack_fx.wav" id="7_6mb3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0i2e"]
-size = Vector2(22.7541, 43)
+size = Vector2(23.3771, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3uc5"]
 size = Vector2(28.5, 16.25)
@@ -61,7 +62,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -87,10 +88,10 @@ tracks/0/path = NodePath("attack area/arma:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -371,8 +372,9 @@ script = ExtResource("1_2l1ea")
 [node name="attack area" type="Area2D" parent="." groups=["player_attack"]]
 
 [node name="arma" type="CollisionShape2D" parent="attack area"]
-position = Vector2(40, 3.5)
+position = Vector2(40.3115, 10.5)
 shape = SubResource("RectangleShape2D_o0i2e")
+disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -396,4 +398,8 @@ position = Vector2(1.5, 22)
 shape = SubResource("RectangleShape2D_5cup4")
 debug_color = Color(0.846192, 0.268838, 0.668871, 0.42)
 
+[node name="attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6mb3e")
+
+[connection signal="area_entered" from="attack area" to="." method="_on_attack_area_area_entered"]
 [connection signal="animation_finished" from="Animation" to="." method="on_animation_finished"]

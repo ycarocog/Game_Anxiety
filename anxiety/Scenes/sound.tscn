@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b24ybyxv07e27"]
+
+[ext_resource type="Script" path="res://Script/sound.gd" id="1_n0oam"]
+[ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="1_vkayi"]
+[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="3_stiyp"]
+
+[node name="Sound" type="Node2D"]
+script = ExtResource("1_n0oam")
+
+[node name="Main_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vkayi")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="Good_mood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_stiyp")
+volume_db = -30.0
+parameters/looping = true

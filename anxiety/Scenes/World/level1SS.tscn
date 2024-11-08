@@ -89,7 +89,7 @@ shader_parameter/change = true
 size = Vector2(3177, 262)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsu5i"]
-size = Vector2(643, 242)
+size = Vector2(418, 43)
 
 [node name="Level1SS" type="Node2D"]
 material = SubResource("ShaderMaterial_5g2ec")
@@ -157,12 +157,12 @@ shape = SubResource("RectangleShape2D_dj0yx")
 visible = false
 
 [node name="Enemy" parent="." instance=ExtResource("10_dnr04")]
-position = Vector2(3436, 292)
+position = Vector2(3670, 292)
 
 [node name="Area_SS" type="Area2D" parent="Enemy"]
 
 [node name="Collision" type="CollisionShape2D" parent="Enemy/Area_SS"]
-position = Vector2(62.5, -22)
+position = Vector2(35, 37.5)
 shape = SubResource("RectangleShape2D_nsu5i")
 debug_color = Color(0.753493, 0.37196, 0.689078, 0.42)
 
