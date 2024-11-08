@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cybmwhp3sww5k"]
+[gd_scene load_steps=11 format=3 uid="uid://cybmwhp3sww5k"]
 
 [ext_resource type="Script" path="res://Script/interface.gd" id="1_h2key"]
 [ext_resource type="Texture2D" uid="uid://bpy4nhsefvh2y" path="res://Assets/ANXIETY_1.jpg" id="1_reqhm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bu0r1qgp6re00" path="res://Assets/creditis_icon.png" id="3_wuk5w"]
 [ext_resource type="FontFile" uid="uid://clc18a58r616e" path="res://Assets/PressStart2P.ttf" id="5_cppw4"]
 [ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="6_66vhg"]
+[ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="7_8dcy4"]
 
 [sub_resource type="Animation" id="Animation_onrln"]
 length = 0.001
@@ -181,6 +182,12 @@ Ycaro Gonçalves - @alasycaro
 [b]OBRIGADO POR JOGAR[/b]
 "
 scroll_active = false
+
+[node name="Main_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8dcy4")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="mouse_entered" from="Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="Play" to="." method="_on_play_mouse_exited"]

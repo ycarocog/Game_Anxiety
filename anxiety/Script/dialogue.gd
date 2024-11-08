@@ -17,7 +17,6 @@ func display_text()->void:
 		Main.in_scene = false
 		Main.finish_dialogue()
 		if Main.can_change_scene and !Main.in_scene:
-			print("pulou a cena")
 			Main.change_scene(place)
 		else:
 			visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://ddtu24d5cqke7"]
+[gd_scene load_steps=22 format=4 uid="uid://ddtu24d5cqke7"]
 
 [ext_resource type="Texture2D" uid="uid://bt7dp8kkypi2q" path="res://Assets/World/quarrto.png" id="1_8s1y3"]
 [ext_resource type="Script" path="res://Script/quarto.gd" id="1_cvqml"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="6_0xfpb"]
 [ext_resource type="FontFile" uid="uid://clc18a58r616e" path="res://Assets/PressStart2P.ttf" id="7_l2vs5"]
 [ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="8_s0p43"]
+[ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="9_av1mx"]
+[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="10_uhqxt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tqxhw"]
 shader = ExtResource("2_w5tcw")
@@ -58,6 +60,34 @@ tracks/2/keys = {
 "values": [Vector2(0, 400)]
 }
 
+[sub_resource type="Animation" id="Animation_8om1q"]
+resource_name = "credits"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits_scene/Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.1, 0.1, 0.1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_scene/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 20),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 550), Vector2(0, 550), Vector2(0, -920)]
+}
+
 [sub_resource type="Animation" id="Animation_3e12o"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -100,34 +130,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"change_scene"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_8om1q"]
-resource_name = "credits"
-length = 20.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Credits_scene/Color:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.1, 0.1, 0.1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Credits_scene/Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 20),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 550), Vector2(0, 550), Vector2(0, -920)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c08ju"]
@@ -308,6 +310,16 @@ Ycaro Gonçalves - @alasycaro
 [b]OBRIGADO POR JOGAR[/b]
 "
 scroll_active = false
+
+[node name="Main_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_av1mx")
+volume_db = -30.0
+parameters/looping = true
+
+[node name="Good_mood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_uhqxt")
+volume_db = -30.0
+parameters/looping = true
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="body_entered" from="Area_Scene" to="." method="_on_area_scene_body_entered"]

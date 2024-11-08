@@ -5,10 +5,13 @@ extends Node2D
 @onready var dialogue:CanvasLayer = get_node("Dialogue")
 @onready var garota:CharacterBody2D = get_node("Garota")
 @onready var material_world:Material = get_node("Sprite_City").get_material()
+@onready var main_theme:AudioStreamPlayer = get_node("Main_theme")
+@onready var good_mood:AudioStreamPlayer = get_node("Good_mood")
 
 func _ready() -> void:
 	if Main.can_change_color:
-		Sound.good_mood.play()
+		main_theme.stop()
+		good_mood.play()
 		material_world.set_shader_parameter("change", false)
 	if Main.finish_anxiety:
 		garota.visible = true
@@ -100,10 +103,6 @@ func _on_park_body_entered(body: Node2D) -> void:
 		dialogue.label.text = "Esse lugar... Por que eu fui tão idiota?"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 		dialogue.place = "parque"
-
-
-func _on_park_2_body_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
 
 func _on_final_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and Main.final_scene:

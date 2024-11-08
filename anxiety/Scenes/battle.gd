@@ -4,19 +4,19 @@ extends Node
 @onready var retry:TextureRect = get_node("Game_Over/Control/Retry")
 @onready var game_over:CanvasLayer = get_node("Game_Over")
 
-var enemy_1 = preload("res://scenes/enemy.tscn")
+
 var limit: int = 0
 var keep = true
 var can_click:bool = false
 
 func _ready() -> void:
-	Sound.main_theme.stop()
+	get_tree().root.get_node("/root/Sound").get_node("Main_theme").stop()
 	Main.can_attack = true
 
 #time out do Timer, filho do Nó principal
 func _on_timer_timeout() -> void:
 	if keep:
-		var enemy_instance = enemy_1.instantiate()
+		var enemy_instance:CharacterBody2D = preload("res://Scenes/enemy.tscn").instantiate()
 		add_child(enemy_instance)
 		enemy_instance.position = $SpawnLocation.position
 	
@@ -38,7 +38,7 @@ func _on_timer_timeout() -> void:
 		get_tree().change_scene_to_file("res://Scenes/World/city.tscn")
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and game_over.visible and can_click:
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("jump") and game_over.visible:

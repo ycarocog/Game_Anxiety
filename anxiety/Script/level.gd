@@ -40,7 +40,7 @@ func _input(_event: InputEvent) -> void:
 func _on_death_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		Main.can_die = true
-		body.GameOver.emit()
+		body.game_over()
 
 func _on_area_ss_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

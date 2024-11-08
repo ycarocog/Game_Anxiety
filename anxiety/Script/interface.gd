@@ -8,7 +8,7 @@ var is_credits:bool = false
 @onready var credits:TextureRect = get_node("Credits")
 @onready var animation:AnimationPlayer = get_node("Animation")
 @onready var credits_scene:CanvasLayer = get_node("Credits_scene")
-
+@onready var main_theme:AudioStreamPlayer = get_node("Main_theme")
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") and can_click:

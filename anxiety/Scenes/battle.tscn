@@ -108,6 +108,7 @@ horizontal_alignment = 1
 stream = ExtResource("7_3sslx")
 volume_db = -30.0
 autoplay = true
+parameters/looping = true
 
 [connection signal="Dead" from="player_td" to="." method="_on_player_td_dead"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

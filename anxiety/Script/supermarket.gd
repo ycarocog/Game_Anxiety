@@ -8,9 +8,13 @@ var interact_caixa:bool = false
 @onready var vendendor:Material = get_node("Vendendor").get_material()
 @onready var garota:CharacterBody2D = get_node("Garota")
 @onready var area_garota:Area2D = get_node("Areas_Interact/Garota")
+@onready var main_theme:AudioStreamPlayer = get_node("Main_theme")
+@onready var good_mood:AudioStreamPlayer = get_node("Good_mood")
 
 func _ready() -> void:
 	if Main.world_color:
+		main_theme.stop()
+		good_mood.play()
 		area_garota.queue_free()
 		garota.queue_free() 
 		supermaket.set_shader_parameter("change", false)

@@ -93,6 +93,8 @@ func animation_sprite()->void:
 	else :
 		animation.play("idle")
 
+func game_over()->void:
+	GameOver.emit()
 
 func _on_low_timer_timeout() -> void:
 	can_low = true

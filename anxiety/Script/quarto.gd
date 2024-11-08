@@ -5,11 +5,15 @@ extends Node2D
 @onready var animation:AnimationPlayer = get_node("Animation")
 @onready var quarto:Material = get_node("Quarrto").get_material()
 @onready var credits_scene:CanvasLayer = get_node("Credits_scene")
+@onready var main_theme:AudioStreamPlayer = get_node("Main_theme")
+@onready var good_mood:AudioStreamPlayer = get_node("Good_mood")
 
 var check_dialog:bool = false
 
 func _ready() -> void:
 	if Main.world_color:
+		main_theme.stop()
+		good_mood.play()
 		credits_scene.visible = true
 		animation.play("credits")
 		quarto.set_shader_parameter("change", false)

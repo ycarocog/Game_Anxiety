@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://djhs7vx4bukdr"]
+[gd_scene load_steps=31 format=4 uid="uid://djhs7vx4bukdr"]
 
 [ext_resource type="Texture2D" uid="uid://bpyvhyq3xjens" path="res://Assets/Map.png" id="1_54uvl"]
 [ext_resource type="Shader" path="res://Script/scale_gray.gdshader" id="1_64q28"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="4_b4pvl"]
 [ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="6_yhvpx"]
 [ext_resource type="PackedScene" uid="uid://bi3e17xira5y8" path="res://Scenes/garota.tscn" id="7_kyfwu"]
+[ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="8_2ql77"]
+[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="9_3qk5k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4bxi"]
 shader = ExtResource("1_64q28")
@@ -334,6 +336,16 @@ position = Vector2(932, 438)
 position = Vector2(-0.5, 9.5)
 shape = SubResource("RectangleShape2D_0p0sn")
 debug_color = Color(0.970454, 0.0837896, 0.383566, 0.42)
+
+[node name="Main_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2ql77")
+volume_db = -30.0
+parameters/looping = true
+
+[node name="Good_mood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3qk5k")
+volume_db = -30.0
+parameters/looping = true
 
 [connection signal="body_entered" from="Areas_Interact/Apartment" to="." method="_on_apartment_body_entered"]
 [connection signal="body_entered" from="Areas_Interact/House" to="." method="_on_house_body_entered"]

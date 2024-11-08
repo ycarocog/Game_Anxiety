@@ -73,4 +73,4 @@ func _on_retry_mouse_exited() -> void:
 func _on_death_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		Main.can_die = true
-		body.GameOver.emit()
+		body.game_over()
