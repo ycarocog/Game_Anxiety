@@ -4,6 +4,7 @@ var player:CharacterBody2D
 
 signal ChangeScene
 
+var can_attack:bool = false
 var final_scene:bool = false
 var position_player_td:Vector2 = Vector2()
 var can_change_scene:bool = false

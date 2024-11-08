@@ -25,7 +25,7 @@ func move() -> void:
 	move_and_slide()
 
 func attack():
-	if Input.is_action_just_pressed("jump") and !can_attack:
+	if Input.is_action_just_pressed("jump") and Main.can_attack:
 		can_attack = true
 
 func animate() -> void:
