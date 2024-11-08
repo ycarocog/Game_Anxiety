@@ -3,6 +3,10 @@ extends Node2D
 @onready var dialogue:CanvasLayer = get_node("Dialogue")
 @onready var player:CharacterBody2D = get_node("Player")
 @onready var animation:AnimationPlayer = get_node("Animation")
+@onready var game_over:CanvasLayer = get_node("Game_Over")
+@onready var retry:TextureRect = get_node("Game_Over/Control/Retry")
+
+var can_click:bool
 
 func _ready() -> void:
 	Main.ChangeScene.connect(animation_fade_out)
@@ -17,6 +21,12 @@ func _ready() -> void:
 	dialogue.msg_queue.push_back("Tenho que ser forte")
 	dialogue.icons.push_back("res://Assets/icon_boy.png") 
 	Main.in_scene = true
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("click") and game_over.visible and can_click:
+		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("jump") and game_over.visible and can_click:
+		get_tree().reload_current_scene()
 
 func change_scene()->void:
 	get_tree().change_scene_to_file(Main.scene_path)
@@ -42,3 +52,23 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
 		dialogue.place = "SS2"
 		Main.can_change_scene = true
+
+func _on_player_game_over() -> void:
+	game_over.visible = true
+	player.queue_free()
+
+func _on_retry_mouse_entered() -> void:
+	can_click = true
+	print("entrou")
+	var tween_retry:Tween = create_tween()
+	tween_retry.tween_property(retry,"modulate:a",0.5,0.1)
+
+func _on_retry_mouse_exited() -> void:
+	can_click = false
+	var tween_retry:Tween = create_tween()
+	tween_retry.tween_property(retry,"modulate:a",1,0.1)
+
+
+func _on_death_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		body.GameOver.emit()

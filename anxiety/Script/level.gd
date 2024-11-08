@@ -27,26 +27,15 @@ func change_scene()->void:
 	get_tree().change_scene_to_file(Main.scene_path)
 
 func _on_player_game_over() -> void:
-	game_over.visible = true
-	animation.play("fade_in")
 	player.queue_free()
+	game_over.visible = true
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("click") and game_over.visible:
+	if Input.is_action_just_pressed("click") and game_over.visible and can_click:
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("jump") and game_over.visible:
+	if Input.is_action_just_pressed("jump") and game_over.visible and can_click:
 		get_tree().reload_current_scene()
 
-func _on_retry_mouse_entered() -> void:
-	can_click = true
-	var tween_retry:Tween = create_tween()
-	tween_retry.tween_property(retry,"modulate:a",0.5,0.1)
-
-func _on_retry_mouse_exited() -> void:
-	can_click = false
-	var tween_retry:Tween = create_tween()
-	
-	tween_retry.tween_property(retry,"modulate:a",1,0.1)
 
 func _on_death_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -75,3 +64,14 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 
 func animation_fade_out()->void:
 	animation.play("fade_out")
+
+
+func _on_retry_mouse_entered() -> void:
+	can_click = true
+	var tween_retry:Tween = create_tween()
+	tween_retry.tween_property(retry,"modulate:a",0.5,0.1)
+
+func _on_retry_mouse_exited() -> void:
+	can_click = false
+	var tween_retry:Tween = create_tween()
+	tween_retry.tween_property(retry,"modulate:a",1,0.1)

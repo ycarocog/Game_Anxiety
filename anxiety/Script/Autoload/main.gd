@@ -39,3 +39,7 @@ func change_scene(scene:String)->void:
 			position_player_td = Vector2(864,406)
 			final_scene = true
 			can_change_scene = false
+		"porta":
+			scene_path = "res://Scenes/World/city.tscn"
+			Main.position_player_td = Vector2(1438,473)
+			can_change_scene = false

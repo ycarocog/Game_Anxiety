@@ -9,8 +9,7 @@ func _ready() -> void:
 	Main.ChangeScene.connect(animation_fade_out)
 
 func change_scene()->void:
-	get_tree().change_scene_to_file("res://Scenes/World/city.tscn")
-	Main.position_player_td = Vector2(1438,473)
+	get_tree().change_scene_to_file(Main.scene_path)
 
 func _on_caixa_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and !interact_caixa:
@@ -24,6 +23,8 @@ func _on_caixa_body_entered(body: Node2D) -> void:
 		Main.in_scene = true
 
 func _on_porta_body_entered(_body: Node2D) -> void:
+	Main.can_change_scene = true
+	Main.change_scene("porta")
 	animation.play("fade_out")
 
 func _on_garota_body_entered(body: Node2D) -> void:
