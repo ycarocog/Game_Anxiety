@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cssy064ugpm1q" path="res://Scenes/Tiles/tiles.tscn" id="6_jwe3e"]
 [ext_resource type="PackedScene" uid="uid://l0jorritb706" path="res://Scenes/dialogue.tscn" id="8_yn3cb"]
 [ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="9_kkw2a"]
-[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="10_xkdj8"]
+[ext_resource type="AudioStream" uid="uid://bixn2fp64fhvn" path="res://Assets/SFX/good_mood.mp3" id="10_cq12d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ore45"]
 shader = ExtResource("1_yp2cv")
@@ -259,8 +259,8 @@ volume_db = -30.0
 parameters/looping = true
 
 [node name="Good_mood" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_xkdj8")
-volume_db = -30.0
+stream = ExtResource("10_cq12d")
+volume_db = -15.009
 parameters/looping = true
 
 [connection signal="body_entered" from="Areas_Interact/Caixa" to="." method="_on_caixa_body_entered"]

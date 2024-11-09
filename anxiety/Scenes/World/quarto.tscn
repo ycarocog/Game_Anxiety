@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ddtu24d5cqke7"]
+[gd_scene load_steps=24 format=4 uid="uid://ddtu24d5cqke7"]
 
 [ext_resource type="Texture2D" uid="uid://bt7dp8kkypi2q" path="res://Assets/World/quarrto.png" id="1_8s1y3"]
 [ext_resource type="Script" path="res://Script/quarto.gd" id="1_cvqml"]
@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://clc18a58r616e" path="res://Assets/PressStart2P.ttf" id="7_l2vs5"]
 [ext_resource type="FontFile" uid="uid://bjhylce72qhln" path="res://Assets/Daydream.ttf" id="8_s0p43"]
 [ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="9_av1mx"]
-[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="10_uhqxt"]
+[ext_resource type="AudioStream" uid="uid://bixn2fp64fhvn" path="res://Assets/SFX/good_mood.mp3" id="10_gvjsw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tqxhw"]
 shader = ExtResource("2_w5tcw")
@@ -20,6 +20,12 @@ size = Vector2(316, 83)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yglfx"]
 size = Vector2(54.75, 108.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q00w6"]
+size = Vector2(109, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h6mj"]
+size = Vector2(69, 24)
 
 [sub_resource type="Animation" id="Animation_p4j8y"]
 length = 0.001
@@ -193,6 +199,20 @@ collision_layer = 4
 position = Vector2(293.625, 243.25)
 shape = SubResource("RectangleShape2D_yglfx")
 
+[node name="Bed" type="StaticBody2D" parent="Collision"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collision/Bed"]
+position = Vector2(253.5, 90)
+shape = SubResource("RectangleShape2D_q00w6")
+
+[node name="Closet" type="StaticBody2D" parent="Collision"]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Collision/Closet"]
+position = Vector2(51.5, 98)
+shape = SubResource("RectangleShape2D_1h6mj")
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c08ju")
@@ -324,7 +344,7 @@ volume_db = -16.883
 parameters/looping = true
 
 [node name="Good_mood" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_uhqxt")
+stream = ExtResource("10_gvjsw")
 volume_db = -15.946
 parameters/looping = true
 

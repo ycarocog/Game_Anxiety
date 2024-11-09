@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://Script/sound.gd" id="1_n0oam"]
 [ext_resource type="AudioStream" uid="uid://3jie3acfv15s" path="res://Assets/SFX/main_theme.mp3" id="1_vkayi"]
-[ext_resource type="AudioStream" uid="uid://bwxccrfmyj0wv" path="res://Assets/SFX/good_mood.mp3" id="3_stiyp"]
+[ext_resource type="AudioStream" uid="uid://bixn2fp64fhvn" path="res://Assets/SFX/good_mood.mp3" id="3_wo1eu"]
 
 [node name="Sound" type="Node2D"]
 script = ExtResource("1_n0oam")
 
 [node name="Main_theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_vkayi")
-volume_db = -30.0
+volume_db = -15.946
 autoplay = true
 parameters/looping = true
 
 [node name="Good_mood" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_stiyp")
-volume_db = -30.0
+stream = ExtResource("3_wo1eu")
+volume_db = -15.009
 parameters/looping = true

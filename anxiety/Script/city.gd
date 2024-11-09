@@ -38,15 +38,17 @@ func _on_house_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Eu não quero entrar nessa casa"
+		dialogue.label.text = "Acho melhor eu não ficar por aqui."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("O senhor que mora aqui odeia que pisem no quintal dele.")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
 	elif body.is_in_group("player") and Main.world_color:
 		Main.in_scene = true
 		player.set_physics_process(false)
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Que cheiro bom!!"
+		dialogue.label.text = "Talvez ele só precise de uma boa companhia!"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 
 
@@ -57,7 +59,7 @@ func _on_house_2_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Quero voltar pra casa..."
+		dialogue.label.text = "Não quero incomodar ninguém..."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 	elif body.is_in_group("player") and Main.world_color:
 		Main.in_scene = true
@@ -65,7 +67,7 @@ func _on_house_2_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Que casa linda"
+		dialogue.label.text = "Que casa linda!"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 
 func _on_house_3_body_entered(body: Node2D) -> void:
@@ -75,15 +77,17 @@ func _on_house_3_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Eu sou insuficiente para ela..."
+		dialogue.label.text = "Bom, ela disse que estaria no mercado..."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
+		dialogue.msg_queue.push_back("Não vou incomodar a família dela.")
+		dialogue.icons.push_back("res://Assets/icon_boy.png")
 	elif body.is_in_group("player") and Main.world_color:
 		Main.in_scene = true
 		player.set_physics_process(false)
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Eu estou me sentindo tão bem"
+		dialogue.label.text = "Talvez eu visite a família dela outra hora!"
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 
 func _on_store_body_entered(body: Node2D) -> void:
@@ -124,7 +128,7 @@ func _on_final_scene_body_entered(body: Node2D) -> void:
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.msg_queue.push_back("NÃO EXISTE ESCAPATÓRIA PRA ONDE VAMOS AGORA!!")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("DERROTE-ME, SE QUER TANTO SE SUJAR A IMUNDICE DESSA TERRA!!")
+		dialogue.msg_queue.push_back("DERROTE-ME, SE QUER TANTO SE SUJAR DA IMUNDÍCIE DESSA TERRA!!")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.place = "cena_final"
 

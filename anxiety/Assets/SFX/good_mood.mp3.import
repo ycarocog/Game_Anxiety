@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://bwxccrfmyj0wv"
+uid="uid://bixn2fp64fhvn"
 path="res://.godot/imported/good_mood.mp3-3870c6dcf1ecf140b31c5a6377902ad0.mp3str"
 
 [deps]
@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/good_mood.mp3-3870c6dcf1ecf140b31c5a6377902ad
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

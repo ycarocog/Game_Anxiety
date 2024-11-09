@@ -68,7 +68,7 @@ func _on_cama_body_entered(body: Node2D) -> void:
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
 		tween_scene.tween_property(dialogue,"visible",true,0.9)
-		dialogue.label.text = "Bem que eu queria ficar deitado, mas não posso"
+		dialogue.label.text = "Bem que eu queria ficar deitado, mas não posso."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 		Main.in_scene = true
 
