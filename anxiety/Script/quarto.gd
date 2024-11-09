@@ -50,7 +50,7 @@ func animation_fade_out()->void:
 	animation.play("fade_out")
 
 func _on_mesa_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and !Main.world_color:
 		player.set_physics_process(false)
 		player.sprite_2d.play("idle")
 		var tween_scene:Tween = create_tween()
@@ -71,8 +71,3 @@ func _on_cama_body_entered(body: Node2D) -> void:
 		dialogue.label.text = "Bem que eu queria ficar deitado, mas não posso."
 		dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png")
 		Main.in_scene = true
-
-
-func _on_animation_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "credits":
-		get_tree().quit()

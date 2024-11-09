@@ -348,7 +348,6 @@ stream = ExtResource("10_gvjsw")
 volume_db = -15.946
 parameters/looping = true
 
-[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="body_entered" from="Area_Scene" to="." method="_on_area_scene_body_entered"]
 [connection signal="body_entered" from="Areas/Mesa" to="." method="_on_mesa_body_entered"]
 [connection signal="body_entered" from="Areas/Cama" to="." method="_on_cama_body_entered"]
