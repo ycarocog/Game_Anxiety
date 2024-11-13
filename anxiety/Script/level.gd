@@ -63,7 +63,7 @@ func _on_area_ss_body_entered(body: Node2D) -> void:
 		dialogue.icons.push_back("res://Assets/icon_boy.png")
 		dialogue.msg_queue.push_back("À essa altura, já deveria saber.")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
-		dialogue.msg_queue.push_back("Vai encontrar ela e repetir tudo denovo?")
+		dialogue.msg_queue.push_back("Vai encontrar ela e repetir tudo de novo?")
 		dialogue.icons.push_back("res://Assets/player/icon_enemy.png")
 		dialogue.msg_queue.push_back("...eu só queria ir no mercado.")
 		dialogue.icons.push_back("res://Assets/icon_boy.png")

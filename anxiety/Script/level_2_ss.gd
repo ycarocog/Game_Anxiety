@@ -14,7 +14,7 @@ func _ready() -> void:
 	tween_scene.tween_property(dialogue,"visible",true,0.9)
 	player.set_physics_process(false)
 	player.animation.play("idle")
-	dialogue.label.text = "Droga, isso denovo."
+	dialogue.label.text = "Droga, isso de novo."
 	dialogue.icon.texture = ResourceLoader.load("res://Assets/icon_boy.png") 
 	dialogue.msg_queue.push_back("Não posso fazer isso, não dá pra falar com ela")
 	dialogue.icons.push_back("res://Assets/icon_boy.png")
