@@ -1,6 +1,9 @@
-Developed by Ycaro, Gabriel and Daielly
+# Anxiety :broken_heart:
+## Hello, me and my friends made a game for GameJam.
 
-Programming: Gabriel and Ycaro
-Design: Ycaro and Daielly
-Storytelling: Gabriel, Ycaro and Daielly
-OST: Gabriel
+### We had 2 week. Developed by Ycaro, Gabriel and Daielly.
+
+Programming: Gabriel and Ycaro <br/>
+Design: Ycaro and Daielly <br/>
+Storytelling: Gabriel, Ycaro and Daielly <br/>
+OST: Gabriel 
