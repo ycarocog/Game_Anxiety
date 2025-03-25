@@ -1,4 +1,4 @@
-# Anxiety :broken_heart:
+# Anxiety
 ## Hello, me and my friends made a game for GameJam.
 
 ### We had 2 week. Developed by Ycaro, Gabriel and Daielly.
